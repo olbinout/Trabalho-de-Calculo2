@@ -1,0 +1,159 @@
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{color}
+\usepackage{mathptmx} % Times font
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=3cm}
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+    \includegraphics[width=3cm]{brasão-ufersa.jpeg} \\
+    \vspace{0.5cm}
+        \large \MakeUppercase{UNIVERSIDADE FEDERAL RURAL DO SEMI-ÁRIDO} \\
+        \large Cálculo II \\
+        
+        \vspace{4.5cm}
+        
+        \Large \textbf{Divisão de uma Pizza} \\
+        
+        \vfill
+
+    \begin{tabular}{l}
+    Kayky Brenner Souto Silva \\
+    Pedro Lucas Silva Cordeiro\\
+    Otavio Linhares Batista \\ 
+    Rian Martins de Paula\\
+    Davi da Silva Freitas
+    \end{tabular}
+        
+        \vfill
+        
+        \begin{flushright}
+            \begin{minipage}{0.5\textwidth}
+                Trabalho acadêmico apresentado ao professor Prof. Otávio Floriano Paulino como requisito de avaliação parcial da disciplina de Cálculo II.
+            \end{minipage}
+        \end{flushright}
+        
+        \vfill
+        
+        \large Pau dos Ferros - RN \\
+        \large 2026
+    \end{center}
+\end{titlepage}
+\section{Introdu\c{c}\~ao}
+Este documento foi desenvolvido com o objetivo de resolver e contextualizar um cl\'assico problema de aplica\c{c}\~ao de C\'alculo Integral: a divis\~ao de uma pizza circular em tr\^es \'areas de mesma medida, n\~ao atrav\'es do tradicional corte em setores (fatias a partir do centro), mas utilizando dois cortes retos e paralelos. 
+
+Imagine tr\^es estudantes de Matem\'atica que pediram uma pizza de $36\text{ cm}$ de di\^ametro. Eles desejam reparti-la de forma perfeitamente justa para que cada um receba a mesma quantidade de pizza. A intui\c{c}\~ao n\~ao \'e suficiente para determinar a posi\c{c}\~ao exata desses cortes paralelos, pois a \'area de um c\'irculo varia de forma n\~ao-linear ao longo do seu raio. Para solucionar esse problema com exatid\~ao matem\'atica, recorreremos \`a modelagem geom\'etrica e ao uso do C\'alculo Integral.
+
+A seguir, apresentaremos o desenvolvimento passo a passo do c\'alculo da \'area utilizando integrais definidas e, como a equa\c{c}\~ao resultante \'e transcendental, utilizaremos uma aproxima\c{c}\~ao num\'erica para determinar a posi\c{c}\~ao exata de onde os cortes devem ser feitos.
+
+\section{Desenvolvimento: Aplica\c{c}\~ao do C\'alculo}
+
+\subsection{Modelagem do Problema}
+Vamos posicionar a pizza em um plano cartesiano com o seu centro na origem $(0, 0)$. 
+Como a pizza possui $36\text{ cm}$ de di\^ametro, o seu raio \'e $R = 18\text{ cm}$.
+A borda da pizza pode ser descrita pela equa\c{c}\~ao da circunfer\^encia:
+\begin{equation}
+x^2 + y^2 = R^2 \implies y = \pm \sqrt{R^2 - x^2}
+\end{equation}
+
+A \'area total da pizza ($A_{total}$) \'e dada por:
+\begin{equation}
+A_{total} = \pi R^2
+\end{equation}
+
+Os estudantes far\~ao dois cortes retos e paralelos. Por quest\~oes de simetria geom\'etrica (para que os peda\c{c}os das extremidades tenham a mesma forma e \'area), os cortes devem ser feitos nas posi\c{c}\~oes verticais $x = d$ e $x = -d$, onde $d > 0$ \'e a dist\^ancia do centro at\'e o local do corte.
+
+Dessa forma, a pizza ser\'a dividida em tr\^es regi\~oes:
+\begin{enumerate}
+    \item A borda esquerda: regi\~ao correspondente a $x \in [-R, -d]$
+    \item A parte central: regi\~ao correspondente a $x \in [-d, d]$
+    \item A borda direita: regi\~ao correspondente a $x \in [d, R]$
+\end{enumerate}
+
+Para que a divis\~ao seja justa, cada uma dessas tr\^es \'areas deve equivaler exatamente a um ter\c{c}o da \'area total da pizza. Portanto, a \'area da borda direita deve ser:
+\begin{equation}
+A_{direita} = \frac{1}{3} \pi R^2
+\end{equation}
+
+\subsection{Montagem e Resolu\c{c}\~ao da Integral}
+Atrav\'es do C\'alculo Integral, a \'area da regi\~ao delimitada pela curva da pizza entre $x = d$ e $x = R$ \'e calculada integrando a diferen\c{c}a entre as curvas superior e inferior. Como a curva superior \'e $y = \sqrt{R^2 - x^2}$ e a inferior \'e $y = -\sqrt{R^2 - x^2}$, temos:
+\begin{equation}
+A_{direita} = \int_{d}^{R} \left( \sqrt{R^2 - x^2} - \left( -\sqrt{R^2 - x^2} \right) \right) \, dx = 2 \int_{d}^{R} \sqrt{R^2 - x^2} \, dx
+\end{equation}
+
+Igualando a \'area encontrada a um ter\c{c}o da \'area total:
+\begin{equation}
+2 \int_{d}^{R} \sqrt{R^2 - x^2} \, dx = \frac{1}{3} \pi R^2
+\end{equation}
+
+Para resolver essa integral, aplicamos a t\'ecnica de substitui\c{c}\~ao trigonom\'etrica. Seja:
+\[ x = R \sin(\theta) \implies dx = R \cos(\theta) \, d\theta \]
+Os limites de integra\c{c}\~ao mudam da seguinte forma:
+\begin{itemize}
+    \item Quando $x = d$, $\sin(\theta) = \frac{d}{R} \implies \theta_1 = \arcsin\left(\frac{d}{R}\right)$
+    \item Quando $x = R$, $\sin(\theta) = 1 \implies \theta_2 = \frac{\pi}{2}$
+\end{itemize}
+
+Substituindo na integral, temos:
+\begin{equation}
+\int \sqrt{R^2 - x^2} \, dx = \int \sqrt{R^2 - R^2\sin^2(\theta)} \cdot R \cos(\theta) \, d\theta = R^2 \int \cos^2(\theta) \, d\theta
+\end{equation}
+Utilizando a identidade de \^angulo duplo $\cos^2(\theta) = \frac{1 + \cos(2\theta)}{2}$:
+\begin{equation}
+R^2 \int \frac{1 + \cos(2\theta)}{2} \, d\theta = \frac{R^2}{2} \left( \theta + \frac{\sin(2\theta)}{2} \right) = \frac{R^2}{2} \left( \theta + \sin(\theta)\cos(\theta) \right)
+\end{equation}
+
+Voltando para a vari\'avel $x$, dado que $\sin(\theta) = \frac{x}{R}$ e $\cos(\theta) = \frac{\sqrt{R^2-x^2}}{R}$, a primitiva da fun\c{c}\~ao \'e:
+\begin{equation}
+\frac{R^2}{2} \arcsin\left(\frac{x}{R}\right) + \frac{1}{2} x \sqrt{R^2 - x^2}
+\end{equation}
+
+Aplicando os limites de integra\c{c}\~ao de $d$ at\'e $R$, e lembrando que a \'area \'e o dobro dessa integral, temos:
+\begin{equation}
+A_{direita} = 2 \left[ \frac{R^2}{2}\arcsin(1) + 0 - \left( \frac{R^2}{2}\arcsin\left(\frac{d}{R}\right) + \frac{d}{2}\sqrt{R^2 - d^2} \right) \right]
+\end{equation}
+\begin{equation}
+A_{direita} = R^2 \frac{\pi}{2} - R^2 \arcsin\left(\frac{d}{R}\right) - d \sqrt{R^2 - d^2}
+\end{equation}
+
+Queremos que $A_{direita} = \frac{1}{3} \pi R^2$. Logo:
+\begin{equation}
+\frac{\pi}{2} R^2 - R^2 \arcsin\left(\frac{d}{R}\right) - d \sqrt{R^2 - d^2} = \frac{\pi}{3} R^2
+\end{equation}
+Dividindo toda a equa\c{c}\~ao por $R^2$:
+\begin{equation}
+\frac{\pi}{2} - \arcsin\left(\frac{d}{R}\right) - \frac{d}{R} \sqrt{1 - \left(\frac{d}{R}\right)^2} = \frac{\pi}{3}
+\end{equation}
+\begin{equation}
+\frac{d}{R} \sqrt{1 - \left(\frac{d}{R}\right)^2} + \arcsin\left(\frac{d}{R}\right) = \frac{\pi}{6}
+\end{equation}
+
+\subsection{Solu\c{c}\~ao da Equa\c{c}\~ao Transcendental}
+A equa\c{c}\~ao obtida no passo anterior \'e da forma:
+\begin{equation}
+t \sqrt{1 - t^2} + \arcsin(t) = \frac{\pi}{6}
+\end{equation}
+onde $t = \frac{d}{R}$. Essa \'e uma equa\c{c}\~ao n\~ao-alg\'ebrica (transcendental) em rela\c{c}\~ao \`a vari\'avel $t$, o que significa que n\~ao pode ser isolada e resolvida analiticamente com um n\'umero finito de opera\c{c}\~oes alg\'ebricas convencionais. 
+
+Recorrendo a m\'etodos de aproxima\c{c}\~ao num\'erica (como o m\'etodo de Newton-Raphson), a solu\c{c}\~ao para esta equa\c{c}\~ao \'e:
+\[ t \approx 0,264932 \]
+
+Dado que $t = \frac{d}{R}$ e o raio da pizza \'e $R = 18\text{ cm}$:
+\[ d = 18 \times 0,264932 \approx 4,7688\text{ cm} \]
+
+\section{Conclus\~ao}
+Com a aplica\c{c}\~ao do C\'alculo Integral, determinamos que os cortes paralelos n\~ao devem ser feitos a um ter\c{c}o do raio (que seria $6\text{ cm}$), mas sim a uma dist\^ancia de aproximadamente $\mathbf{4,77\text{ cm}}$ do centro da pizza para a esquerda e para a direita. 
+
+Os cortes exatos ficam nas posi\c{c}\~oes $x \approx -4,77\text{ cm}$ e $x \approx 4,77\text{ cm}$. Isso significa que os cortes devem ser feitos a aproximadamente $13,23\text{ cm}$ partindo das bordas da pizza ($18 - 4,77 = 13,23$). O peda\c{c}o central, embora pare\c{c}a estreito (tendo a largura de cerca de $9,54\text{ cm}$), compensa na quantidade de massa pelo seu comprimento maior que os peda\c{c}os laterais.
+
+Esse problema demonstra perfeitamente a import\^ancia e aplicabilidade do C\'alculo Diferencial e Integral em situa\c{c}\~oes que envolvem a determina\c{c}\~ao de \'areas curvil\'ineas em que a intui\c{c}\~ao humana pode falhar ou resultar em erros de divis\~ao. A ferramenta permite n\~ao apenas equacionar o problema mas tamb\'em provar com rigor onde o ponto de partilha justo se encontra.
+
+\end{document}
+

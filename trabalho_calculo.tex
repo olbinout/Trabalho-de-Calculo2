@@ -46,6 +46,12 @@
     \end{center}
 \end{titlepage}
 
+%% --- PÁGINA DO SUMÁRIO ---
+\renewcommand{\contentsname}{Sum\'ario}
+\tableofcontents
+\clearpage
+%% -------------------------
+
 \section{Introdu\c{c}\~ao}
 Este documento foi desenvolvido com o objetivo de resolver e contextualizar um cl\'assico problema de aplica\c{c}\~ao de C\'alculo Integral: a divis\~ao de uma pizza circular em tr\^es \'areas de mesma medida, n\~ao atrav\'es do tradicional corte em setores (fatias a partir do centro), mas utilizando dois cortes retos e paralelos. 
 
@@ -143,7 +149,6 @@ Dado que $t = \frac{d}{R}$ e o raio da pizza \'e $R = 18\text{ cm}$:
 \section{Conclus\~ao}
 Com a aplica\c{c}\~ao do C\'alculo Integral, determinamos que os cortes paralelos n\~ao devem ser feitos a um ter\c{c}o do raio (que seria $6\text{ cm}$), mas sim a uma dist\^ancia de aproximadamente $\mathbf{4,77\text{ cm}}$ do centro da pizza para a esquerda e para a direita. Os cortes exatos ficam nas posi\c{c}\~oes $x \approx -4,77\text{ cm}$ e $x \approx 4,77\text{ cm}$. Isso significa que os cortes devem ser feitos a aproximadamente $13,23\text{ cm}$ partindo das bordas da pizza ($18 - 4,77 = 13,23$). O peda\c{c}o central, embora pare\c{c}a estreito (tendo a largura de cerca de $9,54\text{ cm}$), compensa na quantidade de massa pelo seu comprimento maior que os peda\c{c}os laterais. Esse problema demonstra a import\^ancia e aplicação do C\'alculo Diferencial e Integral em situa\c{c}\~oes que envolvem a determina\c{c}\~ao de \'areas curvil\'ineas em que a intui\c{c}\~ao humana pode falhar ou resultar em erros de divis\~ao. A ferramenta permite n\~ao apenas equacionar o problema mas tamb\'em provar com exatidão onde o local de partilha se encontra.
 
-
 \clearpage
 
 \renewcommand{\refname}{Refer\^encias}
@@ -152,7 +157,6 @@ Com a aplica\c{c}\~ao do C\'alculo Integral, determinamos que os cortes paralelo
 \bibitem{stewart} STEWART, James. \textbf{C\'alculo}. Volume 1. 8. ed. S\~ao Paulo: Cengage Learning, 2016.
 
 \bibitem{ruggiero} RUGGIERO, M\'arcia A. Gomes; LOPES, Vera L\'ucia da Rocha. \textbf{C\'alculo num\'erico: aspectos te\'oricos e computacionais}. 2. ed. S\~ao Paulo: Pearson Makron Books, 1996.
-
 
 \end{thebibliography}
 

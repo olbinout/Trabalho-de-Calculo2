@@ -1,5 +1,6 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{graphicx}
 \usepackage{geometry}
@@ -24,7 +25,6 @@
         \vfill
 
     \begin{tabular}{l}
-    Kayky Brenner Souto Silva \\
     Pedro Lucas Silva Cordeiro\\
     Otávio Linhares Batista \\ 
     Rian Martins de Paula\\
@@ -47,7 +47,7 @@
 \end{titlepage}
 
 %% --- PÁGINA DO SUMÁRIO ---
-\renewcommand{\contentsname}{Sum\'ario}
+\renewcommand{\contentsname}{Sumário}
 \tableofcontents
 \clearpage
 %% -------------------------
@@ -93,35 +93,64 @@ Igualando a \'area encontrada a um ter\c{c}o da \'area total:
 2 \int_{d}^{R} \sqrt{R^2 - x^2} \, dx = \frac{1}{3} \pi R^2
 \end{equation}
 
-Para resolver essa integral, aplicamos a t\'ecnica de substitui\c{c}\~ao trigonom\'etrica. Seja:
-\[ x = R \sin(\theta) \implies dx = R \cos(\theta) \, d\theta \]
-Os limites de integra\c{c}\~ao mudam da seguinte forma:
-\begin{itemize}
-    \item Quando $x = d$, $\sin(\theta) = \frac{d}{R} \implies \theta_1 = \arcsin\left(\frac{d}{R}\right)$
-    \item Quando $x = R$, $\sin(\theta) = 1 \implies \theta_2 = \frac{\pi}{2}$
-\end{itemize}
+\section*{Resolução da Integral da "Pizza"}
 
+\subsection*{2.2.1 Integral Inicial e Substituição Trigonométrica}
+Calculando a integral baseada na área do círculo:
+\[ \int \sqrt{R^2 - x^2} \, dx \]
+Utilizando a substituição trigonométrica:
+\[ x = R \sin \theta \implies dx = R \cos \theta \, d\theta \]
 Substituindo na integral, temos:
-\begin{equation}
-\int \sqrt{R^2 - x^2} \, dx = \int \sqrt{R^2 - R^2\sin^2(\theta)} \cdot R \cos(\theta) \, d\theta = R^2 \int \cos^2(\theta) \, d\theta
-\end{equation}
-Utilizando a identidade de \^angulo duplo $\cos^2(\theta) = \frac{1 + \cos(2\theta)}{2}$:
-\begin{equation}
-R^2 \int \frac{1 + \cos(2\theta)}{2} \, d\theta = \frac{R^2}{2} \left( \theta + \frac{\sin(2\theta)}{2} \right) = \frac{R^2}{2} \left( \theta + \sin(\theta)\cos(\theta) \right)
-\end{equation}
+\begin{align*}
+\int \sqrt{R^2 - (R \sin \theta)^2} \, R \cos \theta \, d\theta &= \int \sqrt{R^2 - R^2 \sin^2 \theta} \, R \cos \theta \, d\theta \\
+&= \int \sqrt{R^2(1 - \sin^2 \theta)} \, R \cos \theta \, d\theta \\
+&= \int \sqrt{R^2 \cos^2 \theta} \, R \cos \theta \, d\theta \\
+&= \int R \cos \theta \cdot R \cos \theta \, d\theta \\
+&= R^2 \int \cos^2 \theta \, d\theta
+\end{align*}
 
-Voltando para a vari\'avel $x$, dado que $\sin(\theta) = \frac{x}{R}$ e $\cos(\theta) = \frac{\sqrt{R^2-x^2}}{R}$, a primitiva da fun\c{c}\~ao \'e:
-\begin{equation}
-\frac{R^2}{2} \arcsin\left(\frac{x}{R}\right) + \frac{1}{2} x \sqrt{R^2 - x^2}
-\end{equation}
+\subsection*{2.2.2 Resolução com Arco Duplo}
+Sabendo que $\cos^2 \theta = \frac{1 + \cos(2\theta)}{2}$:
+\begin{align*}
+R^2 \int \frac{1 + \cos(2\theta)}{2} \, d\theta &= \frac{R^2}{2} \left[ \theta + \frac{\sin(2\theta)}{2} \right]
+\end{align*}
+Como $\sin(2\theta) = 2 \sin \theta \cos \theta$:
+\[ = \frac{R^2}{2} [ \theta + \sin \theta \cos \theta ] \]
 
-Aplicando os limites de integra\c{c}\~ao de $d$ at\'e $R$, e lembrando que a \'area \'e o dobro dessa integral, temos:
-\begin{equation}
-A_{direita} = 2 \left[ \frac{R^2}{2}\arcsin(1) + 0 - \left( \frac{R^2}{2}\arcsin\left(\frac{d}{R}\right) + \frac{d}{2}\sqrt{R^2 - d^2} \right) \right]
-\end{equation}
-\begin{equation}
-A_{direita} = R^2 \frac{\pi}{2} - R^2 \arcsin\left(\frac{d}{R}\right) - d \sqrt{R^2 - d^2}
-\end{equation}
+\subsection*{2.2.3 Retorno às Variáveis Originais (Relações do Triângulo Retângulo)}
+Sabemos que $x = R \sin \theta$, logo $\sin \theta = \frac{x}{R}$. \\
+Para o triângulo retângulo, considerando o ângulo $\theta$, temos os seguintes valores:
+\begin{itemize}
+    \item \textbf{Cateto Oposto ($O$):} $x$
+    \item \textbf{Hipotenusa ($H$):} $R$
+    \item \textbf{Cateto Adjacente ($A$):} $\sqrt{R^2 - x^2}$
+\end{itemize}
+Assim, deduzimos que:
+\[ \cos \theta = \frac{A}{H} = \frac{\sqrt{R^2 - x^2}}{R} \]
+\[ \theta = \arcsin\left(\frac{x}{R}\right) \]
+
+Substituindo esses valores no resultado da integral:
+\begin{align*}
+&= \frac{R^2}{2} \left[ \arcsin\left(\frac{x}{R}\right) + \left(\frac{x}{R}\right)\left(\frac{\sqrt{R^2 - x^2}}{R}\right) \right] \\
+&= \frac{R^2}{2} \arcsin\left(\frac{x}{R}\right) + \frac{x \sqrt{R^2 - x^2}}{2}
+\end{align*}
+
+\subsection*{2.2.4 Aplicação dos Limites de Integração}
+Agora, voltamos com a constante "2" que multiplicava a expressão no início e avaliamos os limites de integração de $d$ a $R$:
+\[ 2 \left[ \frac{R^2}{2} \arcsin\left(\frac{x}{R}\right) + \frac{x \sqrt{R^2 - x^2}}{2} \right]_{d}^{R} \]
+
+Avaliando no limite superior ($R$):
+\[ \frac{R^2}{2} \arcsin\left(\frac{R}{R}\right) + \frac{R \sqrt{R^2 - R^2}}{2} = \frac{R^2}{2} \cdot \frac{\pi}{2} + 0 = \frac{R^2 \pi}{4} \]
+
+Avaliando no limite inferior ($d$):
+\[ \frac{R^2}{2} \arcsin\left(\frac{d}{R}\right) + \frac{d \sqrt{R^2 - d^2}}{2} \]
+
+Subtraindo os limites e multiplicando pelo fator 2 externo, obtemos a área final:
+\begin{align*}
+&= 2 \left[ \frac{R^2 \pi}{4} - \left( \frac{R^2}{2} \arcsin\left(\frac{d}{R}\right) + \frac{d \sqrt{R^2 - d^2}}{2} \right) \right] \\
+&= \frac{R^2 \pi}{2} - R^2 \arcsin\left(\frac{d}{R}\right) - d \sqrt{R^2 - d^2}
+\end{align*}
+
 
 Queremos que $A_{direita} = \frac{1}{3} \pi R^2$. Logo:
 \begin{equation}
@@ -159,5 +188,7 @@ Com a aplica\c{c}\~ao do C\'alculo Integral, determinamos que os cortes paralelo
 \bibitem{ruggiero} RUGGIERO, M\'arcia A. Gomes; LOPES, Vera L\'ucia da Rocha. \textbf{C\'alculo num\'erico: aspectos te\'oricos e computacionais}. 2. ed. S\~ao Paulo: Pearson Makron Books, 1996.
 
 \end{thebibliography}
+
+\clearpage
 
 \end{document}
